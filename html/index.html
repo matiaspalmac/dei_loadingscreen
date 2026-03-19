@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargando...</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- ====== Background Layer ====== -->
+    <div id="bg-layer">
+        <div id="bg-video-wrap" class="bg-media hidden">
+            <video id="bg-video" muted loop playsinline></video>
+        </div>
+        <div id="bg-slideshow" class="bg-media">
+            <div class="slide active"></div>
+            <div class="slide"></div>
+        </div>
+        <div id="bg-fallback" class="bg-media"></div>
+        <div id="bg-overlay"></div>
+    </div>
+
+    <!-- ====== Particles ====== -->
+    <div id="particles"></div>
+
+    <!-- ====== Tab Navigation ====== -->
+    <div id="tab-bar" class="glass-card fade-element">
+        <button class="tab-btn active" data-tab="inicio">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Inicio</span>
+        </button>
+        <button class="tab-btn" data-tab="reglas">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Reglas</span>
+        </button>
+        <button class="tab-btn" data-tab="staff">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Staff</span>
+        </button>
+        <button class="tab-btn" data-tab="changelog">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span>Changelog</span>
+        </button>
+        <div id="tab-indicator"></div>
+    </div>
+
+    <!-- ====== Clock (top-right) ====== -->
+    <div id="clock" class="glass-card fade-element">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span id="clock-time">00:00</span>
+    </div>
+
+    <!-- ====== Tab Panels Container ====== -->
+    <div id="tab-panels">
+
+        <!-- == Panel: Inicio == -->
+        <div class="tab-panel active" data-tab="inicio">
+            <!-- Server Info Card (left) -->
+            <div id="server-info" class="glass-card fade-element">
+                <div id="server-logo-wrap">
+                    <img id="server-logo" class="hidden" alt="Logo" />
+                    <div id="server-logo-fallback">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                </div>
+                <h1 id="server-name"></h1>
+                <p id="server-desc"></p>
+
+                <div id="server-status">
+                    <div class="status-dot"></div>
+                    <span id="server-status-text">Conectando...</span>
+                </div>
+
+                <div id="social-links"></div>
+            </div>
+
+            <!-- Tips Card (right/center) -->
+            <div id="tips-card" class="glass-card fade-element">
+                <div id="tips-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>Consejos</span>
+                </div>
+                <p id="tip-text"></p>
+                <span id="tip-counter"></span>
+            </div>
+        </div>
+
+        <!-- == Panel: Reglas == -->
+        <div class="tab-panel" data-tab="reglas">
+            <div id="rules-card" class="glass-card fade-element visible">
+                <div id="rules-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <span>Reglas</span>
+                </div>
+                <ol id="rules-list"></ol>
+                <a id="rules-discord-link" href="#" target="_blank">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    <span id="rules-discord-text"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- == Panel: Staff == -->
+        <div class="tab-panel" data-tab="staff">
+            <div id="staff-card" class="glass-card fade-element visible">
+                <div id="staff-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Equipo</span>
+                </div>
+                <div id="staff-list"></div>
+            </div>
+        </div>
+
+        <!-- == Panel: Changelog == -->
+        <div class="tab-panel" data-tab="changelog">
+            <div id="changelog-card" class="glass-card fade-element visible">
+                <div id="changelog-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <span>Changelog</span>
+                </div>
+                <div id="changelog-list"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ====== Music Player ====== -->
+    <div id="music-player" class="glass-card fade-element">
+        <div id="music-prompt" class="hidden">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <span>Click para activar musica</span>
+        </div>
+        <div id="music-controls">
+            <button id="music-toggle" aria-label="Reproducir/Pausar">
+                <svg id="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg id="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="hidden"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <div id="music-info">
+                <span id="music-song-name"></span>
+            </div>
+            <div id="music-volume-wrap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                <input type="range" id="music-volume" min="0" max="100" value="30" />
+            </div>
+        </div>
+        <audio id="music-audio" loop preload="auto"></audio>
+        <div id="audio-visualizer"></div>
+    </div>
+
+
+    <!-- ====== Loading Bar (bottom) ====== -->
+    <div id="loading-section" class="fade-element">
+        <div id="loading-info">
+            <span id="loading-status">Iniciando conexion...</span>
+            <span id="loading-percent">0%</span>
+        </div>
+        <div id="loading-track">
+            <div id="loading-fill"></div>
+        </div>
+    </div>
+
+    <!-- Config MUST load before app.js -->
+    <script src="../../config.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
